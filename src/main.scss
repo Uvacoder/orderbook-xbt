@@ -2,127 +2,14 @@
 
 // I took these root variables from the working example
 :root {
-  --brand-rgb: 88, 65, 216;
-  --b100: #69f3ff;
-  --b200: #21c7f9;
-  --b300: #009dcd;
-  --b400: #0074a2;
-  --b500: #004e79;
-  --b600: #002a52;
-  --black: #000;
-  --brand: #5841d8;
-  --bt100: #f4fcff;
-  --bt200: #e9f9fe;
-  --bt300: #d3f4fe;
-  --g100: #91f097;
-  --g200: #67c570;
-  --g300: #3b9b4a;
-  --g400: #067325;
-  --g500: #004b03;
-  --g600: #002600;
-  --gt100: #f7fcf8;
-  --gt200: #f0f9f1;
-  --gt300: #e0f3e2;
-  --i100: #cfcbf0;
-  --i200: #a4a0c4;
-  --i300: #7b7799;
-  --i400: #545171;
-  --i500: #2f2e4b;
-  --i600: #21212c;
-  --i700: #1c1c2b;
-  --i800: #11111b;
-  --it100: #f3f3f4;
-  --it200: #e7e7ea;
-  --it300: #cfced4;
-  --n100: #d6d6d6;
-  --n200: #afafaf;
-  --n300: #898989;
-  --n400: #656565;
-  --n500: #434343;
-  --n600: #242424;
-  --n650: #121212;
-  --nt100: #fafafa;
-  --nt200: #eee;
-  --nt300: #e2e2e2;
-  --p100: #e8bbff;
-  --p200: #b992ff;
-  --p300: #8968ff;
-  --p400: #5d45dc;
-  --p500: #2824b6;
-  --p600: #000081;
-  --pt100: #f7f6fd;
-  --pt200: #eeecfb;
-  --pt300: #ded9f7;
-  --r100: #ffa6a2;
-  --r200: #fb7273;
-  --r300: #e2444d;
-  --r400: #bc1b31;
-  --r500: #8c0212;
-  --r600: #5b0000;
-  --rt100: #fef6f6;
-  --rt200: #fdedee;
-  --rt300: #fbdbdd;
   --white: #fff;
-  --y100: #ffd24c;
-  --y200: #d1a91c;
-  --y300: #a38102;
-  --y400: #785c00;
-  --y500: #513700;
-  --y600: #341200;
-  --yt100: #fffdf6;
-  --yt200: #fffbed;
-  --yt300: #fff6db;
-}
-@media (min-width: 1441px) {
-  :root {
-    scrollbar-color: var(--icon-colour) transparent;
-    scrollbar-width: thin;
-  }
-  :root ::-webkit-scrollbar {
-    width: var(--spacing-s);
-    height: var(--spacing-s);
-  }
-  :root ::-webkit-scrollbar-track {
-    background: var(--card-colour);
-  }
-  :root ::-webkit-scrollbar-thumb {
-    background: var(--icon-colour);
-  }
-}
-@media (min-width: 1367px) and (max-width: 1440px) {
-  :root {
-    scrollbar-color: var(--icon-colour) transparent;
-    scrollbar-width: thin;
-  }
-  :root ::-webkit-scrollbar {
-    width: var(--spacing-xs);
-    height: var(--spacing-xs);
-  }
-  :root ::-webkit-scrollbar-track {
-    background: var(--card-colour);
-  }
-  :root ::-webkit-scrollbar-thumb {
-    background: var(--icon-colour);
-  }
-}
-@media (min-width: 1025px) and (max-width: 1366px) {
-  :root {
-    scrollbar-color: var(--icon-colour) transparent;
-    scrollbar-width: thin;
-  }
-  :root ::-webkit-scrollbar {
-    width: var(--spacing-xs);
-    height: var(--spacing-xs);
-  }
-  :root ::-webkit-scrollbar-track {
-    background: var(--card-colour);
-  }
-  :root ::-webkit-scrollbar-thumb {
-    background: var(--icon-colour);
-  }
+  --background: #0c1114;
+  --panel: #1f2a31;
+  --card: #1c2a31;
 }
 
 body {
+  background-color: var(--background);
   color: var(--white);
   margin: 0;
   font-family: monospace;

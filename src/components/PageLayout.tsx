@@ -1,8 +1,6 @@
 import * as React from 'react'
 import Head from 'next/head'
-
-const defaultTitle = 'XBT/USD | OrderBook'
-const defaultDescription = 'Orderbook for xbt to USD'
+import config from 'consts/config'
 
 interface Props {
   description?: string
@@ -13,8 +11,8 @@ interface Props {
 
 const PageLayout: React.FunctionComponent<Props> = ({
   children,
-  title = defaultTitle,
-  description = defaultDescription,
+  title = config.defaultTitle,
+  description = config.defaultDescription,
   // ogImage = '',
   url = '/'
 }) => {
