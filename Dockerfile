@@ -24,8 +24,8 @@ RUN yarn --production
 COPY . /usr/src
 
 # Set any env variables like so if we had them
-# ARG WS_URL
-# ENV WS_URL $WS_URL
+# ARG WSS_URL
+# ENV WSS_URL $WSS_URL
 
 # Build app
 RUN npm run build

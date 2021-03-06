@@ -3,6 +3,8 @@
 ## What would you add to your solution if you had more time?
 
 - Pipeline with different files .env to store configs
+- Internationalization
+- Better a11y
 
 ## What would you have done differently if you knew this page was going to get thousands of views per second vs per week?
 

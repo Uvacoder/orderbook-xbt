@@ -1,12 +1,15 @@
 import React from 'react'
 
-import Quiz from 'components/Quiz'
-import PageLayout from '~/layout/PageLayout'
+import OrderBook from 'components/OrderBook'
+import PageLayout from 'components/PageLayout'
+import { OrderBookProvider } from 'contexts/orderBook'
 
 const App: React.FunctionComponent = () => {
   return (
     <PageLayout>
-      <Quiz />
+      <OrderBookProvider>
+        <OrderBook />
+      </OrderBookProvider>
     </PageLayout>
   )
 }

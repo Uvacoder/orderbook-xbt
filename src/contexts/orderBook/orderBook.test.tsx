@@ -2,7 +2,7 @@ import { render, screen } from '@testing-library/react'
 
 import React from 'react'
 import userEvent from '@testing-library/user-event'
-import { OrderBookProvider, useOrderBookState, useOrderBookDispatch } from '../orderBook'
+import { OrderBookProvider, useOrderBookState, useOrderBookDispatch } from '.'
 
 const SampleOrderBook = () => {
   const { orderBookError } = useOrderBookState()

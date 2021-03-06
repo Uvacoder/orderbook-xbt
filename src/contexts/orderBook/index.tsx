@@ -1,37 +1,13 @@
 /* eslint-disable camelcase */
-import React, { createContext, useContext, useReducer } from 'react'
-import axios from 'axios'
+import React, { createContext, ReactNode, useContext, useReducer } from 'react'
+import { OrderBookState, OrderBookDispatch } from '~/types/OrderBookTypes'
+import { orderBookReducer, initialOrderBookState } from './orderBookReducer'
 
-export type OrderBookData = any
-type Action = { type: 'orderBookError'; orderBookError: string }
-type Dispatch = (action: Action) => void
-interface OrderBookState {
-  orderBook?: OrderBookData
-  orderBookError?: string
-}
-
-const initialOrderBookState: OrderBookState = {
-  // orderBook: {},
-  orderBookError: ''
-}
 const OrderBookStateContext = createContext<OrderBookState>(initialOrderBookState)
-const OrderBookUpdaterContext = createContext<Dispatch | undefined>(undefined)
+const OrderBookUpdaterContext = createContext<OrderBookDispatch | undefined>(undefined)
 
-function orderBookReducer(state: OrderBookState, action: Action) {
-  switch (action.type) {
-    case 'orderBookError': {
-      return {
-        ...state,
-        orderBookError: action.orderBookError
-      }
-    }
-    default: {
-      throw new Error(`Unhandled action type: ${action.type}`)
-    }
-  }
-}
-
-export function OrderBookProvider({ children }) {
+// Split up State and Dispatch to improve re-renders. See https://kentcdodds.com/blog/how-to-use-react-context-effectively
+export const OrderBookProvider = ({ children }: { children: ReactNode }): JSX.Element => {
   const [orderBook, dispatch] = useReducer(orderBookReducer, initialOrderBookState)
   return (
     <OrderBookStateContext.Provider value={orderBook}>
@@ -40,15 +16,15 @@ export function OrderBookProvider({ children }) {
   )
 }
 
-export function useOrderBookState() {
-  const OrderBookState = useContext(OrderBookStateContext)
-  if (typeof OrderBookState === 'undefined') {
+export const useOrderBookState = (): OrderBookState => {
+  const state = useContext(OrderBookStateContext)
+  if (typeof state === 'undefined') {
     throw new Error('useOrderBookState must be used within a OrderBookProvider')
   }
-  return OrderBookState
+  return state
 }
 
-export function useOrderBookDispatch() {
+export const useOrderBookDispatch = (): OrderBookDispatch => {
   const dispatchContext = useContext(OrderBookUpdaterContext)
   if (typeof dispatchContext === 'undefined') {
     throw new Error('useOrderBookUpdater must be used within a OrderBookProvider')
@@ -56,7 +32,7 @@ export function useOrderBookDispatch() {
   return dispatchContext
 }
 
-export async function getOrderBook(dispatch: Dispatch, cancelToken) {
+export const getOrderBook = (dispatch: OrderBookDispatch): void => {
   try {
     // const { data } = await axios('api/OrderBookManagement', {
     //   method: 'GET',
