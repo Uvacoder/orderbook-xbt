@@ -1,0 +1,40 @@
+{
+  "compilerOptions": {
+    "allowJs": true,
+    "alwaysStrict": true,
+    "baseUrl": ".",
+    "paths": {
+      "components/*": ["src/components/*"],
+      "consts/*": ["src/consts/*"],
+      "contexts/*": ["src/contexts/*"],
+      "hooks/*": ["src/hooks/*"],
+      "layout/*": ["src/layout/*"],
+      "svg/*": ["src/svg/*"],
+      "testSetup/*": ["testSetup/*"],
+      "utils/*": ["src/utils/*"],
+      "~/*": ["src/*"]
+    },
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "jsx": "preserve",
+    "lib": ["dom", "es2017"],
+    "module": "esnext",
+    "moduleResolution": "node",
+    "noEmit": true,
+    "noFallthroughCasesInSwitch": true,
+    "noImplicitAny": false,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "preserveConstEnums": true,
+    "removeComments": true,
+    "resolveJsonModule": true,
+    "skipLibCheck": true,
+    "strictFunctionTypes": false,
+    "target": "esnext",
+    "strict": false,
+    "downlevelIteration": true,
+    "isolatedModules": true
+  },
+  "exclude": ["node_modules", "cypress", "public"],
+  "include": ["./src/**/*.ts", "./src/**/*.tsx", "next-env.d.ts", "testSetup/*.{ts, js}"]
+}

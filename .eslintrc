@@ -1,0 +1,27 @@
+{
+  "extends": ["airbnb-typescript-prettier"],
+  "rules": {
+    "react/prop-types": 0,
+    "no-shadow": "off",
+    "@typescript-eslint/no-shadow": ["error"],
+    "prettier/prettier": [
+      "error",
+      {
+        "endOfLine": "auto"
+      }
+    ]
+  },
+  "env": {
+    "jest": true
+  },
+  "settings": {
+    "import/resolver": {
+      "typescript": {
+        "project": "."
+      },
+      "node": {
+        "extensions": [".ts", ".tsx", ".native.js"]
+      }
+    }
+  }
+}
