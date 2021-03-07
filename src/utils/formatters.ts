@@ -1,6 +1,6 @@
 export const formatProductId = (productIds: string[]): string => {
   const productId = productIds[0]
-  if (!productId || productId.length !== 9) {
+  if (!productId || productId.length < 9) {
     return ''
   }
 

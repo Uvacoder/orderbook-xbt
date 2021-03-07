@@ -1,4 +1,4 @@
-import { BidAskOrderBook } from '~/types/OrderBookTypes'
+import { BidAskOrderBook } from '../types/OrderBookTypes'
 
 const asks: BidAskOrderBook[] = [
   [0.4585, 0],
@@ -36,7 +36,8 @@ const bids: BidAskOrderBook[] = [
 
 const fakeOrderBook = {
   asks,
-  bids
+  bids,
+  feed: ''
 }
 
 export default fakeOrderBook

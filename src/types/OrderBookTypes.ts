@@ -35,5 +35,6 @@ export type OrderBookActions =
   | { type: 'reconnectToOrderBook' }
   | { type: 'changeProduct'; productId: string }
   | { type: 'orderBookError'; orderBookError: string }
+  | { type: 'noop' } // for testing purposes
 
 export type OrderBookDispatch = (action: OrderBookActions) => void

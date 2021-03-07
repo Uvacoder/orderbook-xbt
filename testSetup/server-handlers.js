@@ -4,10 +4,10 @@
 import { rest } from 'msw'
 
 const handlers = [
-  rest.get('/api/orderBook', async (req, res, ctx) => {
-    // TODO:
-    return res(ctx.json({}))
-  })
+  // rest.get('/api/orderBook', async (req, res, ctx) => {
+  //   // TODO:
+  //   return res(ctx.json({}))
+  // })
 ]
 
 export { handlers }

@@ -7,9 +7,10 @@ const useDocumentHidden = (): boolean => {
     const onVisibilitychange = () => {
       setDocumentHidden(document.hidden)
     }
-    document.addEventListener('visibilitychange', onVisibilitychange)
+
+    window.addEventListener('visibilitychange', onVisibilitychange)
     return () => {
-      document.removeEventListener('visibilitychange', onVisibilitychange)
+      window.removeEventListener('visibilitychange', onVisibilitychange)
     }
   }, [])
 

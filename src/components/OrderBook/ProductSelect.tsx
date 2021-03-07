@@ -1,7 +1,8 @@
 import React from 'react'
 import { useOrderBookState, useOrderBookDispatch } from 'contexts/orderBook'
+import productIdOptions from 'consts/productIdOptions'
 
-import styles from './orderBook.module.scss'
+// import styles from './orderBook.module.scss' // TODO:
 
 const ProductSelect: React.FunctionComponent = () => {
   const { productIds } = useOrderBookState()
@@ -9,10 +10,11 @@ const ProductSelect: React.FunctionComponent = () => {
 
   return (
     <select value={productIds[0]} onChange={(e) => dispatch({ type: 'changeProduct', productId: e.target.value })}>
-      <option value="PI_XBTUSD">XBT/USD</option>
-      <option value="PI_ETHUSD">ETH/USD</option>
-      <option value="PI_LTCUSD">LTC/USD</option>
-      <option value="PI_XRPUSD">XRP/USD</option>
+      {productIdOptions.map((id) => (
+        <option key={id.value} value={id.value}>
+          {id.label}
+        </option>
+      ))}
     </select>
   )
 }
