@@ -21,3 +21,21 @@
 ## Can you describe common security concerns to consider for a frontend developer?
 
 ## How would you improve the API that you just used?
+
+I would do the calculations on the API side. I do like the simplicity of just sending the price/size in a tuple; however, it's too "lite". I would prefer that the API sended something like this:
+
+```json
+{
+  asks: "[
+    {
+      price: ...,
+      size: ...,
+      total: ...,
+    },
+    ....
+  ]",
+  bids: "[...same thing...]",
+  feed: "book_ui_1",
+  product_id: "..."
+}
+```

@@ -2,6 +2,7 @@
 import React, { createContext, ReactNode, useContext, useReducer, useEffect, useRef } from 'react'
 import useOnlineStatus from 'hooks/useOnlineStatus'
 import useDocumentHidden from 'hooks/useDocumentHidden'
+import fakeOrderBook from 'consts/fakeOrderBook'
 import { OrderBookState, OrderBookSnapshot, OrderBookDispatch } from '~/types/OrderBookTypes'
 import { orderBookReducer, initialOrderBookState } from './orderBookReducer'
 
@@ -15,8 +16,13 @@ export const OrderBookProvider = ({ children }: { children: ReactNode }): JSX.El
   const documentHidden = useDocumentHidden()
   const online = useOnlineStatus()
   const ws = useRef<WebSocket | undefined>()
+  const firstUpdate = useRef(true)
 
   const { productIds, orderBookConnected, reconnect } = orderBook
+
+  // useEffect(() => {
+  //   dispatch({ type: 'updateOrderBook', bids: fakeOrderBook.bids, asks: fakeOrderBook.asks })
+  // }, [])
 
   useEffect(() => {
     ws.current = new WebSocket(WSS_URL)
@@ -42,6 +48,12 @@ export const OrderBookProvider = ({ children }: { children: ReactNode }): JSX.El
   }, [reconnect])
 
   useEffect(() => {
+    // dont run on mount
+    if (firstUpdate.current) {
+      firstUpdate.current = false
+      return
+    }
+
     if (documentHidden) {
       ws.current.close(1000)
     } else {
@@ -51,6 +63,7 @@ export const OrderBookProvider = ({ children }: { children: ReactNode }): JSX.El
 
   useEffect(() => {
     if (!online) {
+      ws.current.close()
       dispatch({
         type: 'orderBookError',
         orderBookError: 'You have lost internet access. Please reconnect to see orderbook'

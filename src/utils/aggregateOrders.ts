@@ -45,7 +45,7 @@ const aggregateOrders = (
 
   const sortedOrder = orderObjs.sort((a, b) => b.price - a.price)
 
-  if (bids) {
+  if (!bids) {
     sortedOrder.reverse()
   }
 
@@ -56,7 +56,7 @@ const aggregateOrders = (
     return { ...order, total }
   })
 
-  if (bids) {
+  if (!bids) {
     sortedTotal.reverse()
   }
 

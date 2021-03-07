@@ -19,12 +19,12 @@ import styles from './orderBook.module.scss'
 - Tooltip component for price, size, total
 */
 const OrderBook: React.FunctionComponent = () => {
-  const { orderBookConnected, orderBookConnecting, productIds, bids, asks } = useOrderBookState()
+  const { orderBookConnecting, productIds, bids, asks } = useOrderBookState()
   const tradeName = formatProductId(productIds)
   useTitle(
-    orderBookConnected
-      ? `${bids[0]?.price} ${tradeName} | ${config.defaultTitle}`
-      : `${tradeName} | ${config.defaultTitle}`
+    orderBookConnecting
+      ? `${tradeName} | ${config.defaultTitle}`
+      : `${bids[0]?.price || ''} ${tradeName} | ${config.defaultTitle}`
   )
 
   return (
@@ -36,8 +36,8 @@ const OrderBook: React.FunctionComponent = () => {
           <Loader />
         ) : (
           <>
-            <OrderTable orders={bids} bids />
             <OrderTable orders={asks} bids={false} />
+            <OrderTable orders={bids} bids />
           </>
         )}
       </div>

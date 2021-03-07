@@ -10,11 +10,13 @@ const useOnlineStatus = (): boolean => {
     const handleOffline = () => {
       setOnlineStatus(false)
     }
-    document.addEventListener('online', handleOnline)
-    document.addEventListener('offline', handleOffline)
+
+    window.addEventListener('online', handleOnline)
+    window.addEventListener('offline', handleOffline)
+
     return () => {
-      document.removeEventListener('online', handleOnline)
-      document.removeEventListener('offline', handleOffline)
+      window.removeEventListener('online', handleOnline)
+      window.removeEventListener('offline', handleOffline)
     }
   }, [])
 

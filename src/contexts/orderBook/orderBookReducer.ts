@@ -2,8 +2,8 @@ import aggregateOrders from 'utils/aggregateOrders'
 import { OrderBookState, OrderBookActions } from '~/types/OrderBookTypes'
 
 export const initialOrderBookState: OrderBookState = {
-  bids: [],
   asks: [],
+  bids: [],
   orderBookConnecting: true,
   orderBookConnected: false,
   orderBookError: '',

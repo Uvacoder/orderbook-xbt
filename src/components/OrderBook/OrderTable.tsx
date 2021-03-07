@@ -1,5 +1,4 @@
 import React from 'react'
-import clsx from 'clsx'
 import OrderRow from './OrderRow'
 import { BidAskData } from '~/types/OrderBookTypes'
 
@@ -11,20 +10,22 @@ interface OrderTableProps {
 }
 
 const OrderTable: React.FunctionComponent<OrderTableProps> = ({ bids, orders }) => {
+  const maxTotal = Math.max(orders[0].total, orders[orders.length - 1].total)
+
   return (
     <table className={styles.tableWrapper}>
-      {bids && (
+      {!bids && (
         <thead>
           <tr>
-            <th>PRICE</th>
-            <th>SIZE</th>
-            <th>TOTAL</th>
+            <th colSpan={2}>PRICE</th>
+            <th colSpan={2}>SIZE</th>
+            <th colSpan={2}>TOTAL</th>
           </tr>
         </thead>
       )}
       <tbody>
         {orders.map((order) => (
-          <OrderRow key={order.price} order={order} bids={bids} />
+          <OrderRow key={order.price} order={order} bids={bids} maxTotal={maxTotal} />
         ))}
       </tbody>
     </table>
