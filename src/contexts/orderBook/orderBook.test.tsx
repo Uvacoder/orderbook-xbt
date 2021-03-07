@@ -1,18 +1,13 @@
 import { render, screen } from '@testing-library/react'
 
 import React from 'react'
-import userEvent from '@testing-library/user-event'
-import { OrderBookProvider, useOrderBookState, useOrderBookDispatch } from '.'
+import { OrderBookProvider, useOrderBookState } from '.'
 
 const SampleOrderBook = () => {
   const { orderBookError } = useOrderBookState()
-  const dispatch = useOrderBookDispatch()
   return (
     <div>
       <span>orderBookError: {orderBookError}</span>
-      <button type="button" onClick={() => dispatch({ type: 'orderBookError', orderBookError: "There's an error" })}>
-        error
-      </button>
     </div>
   )
 }
@@ -26,7 +21,7 @@ describe('OrderBookProvider Component', () => {
     )
 
     expect(screen.getByText('orderBookError:')).toBeInTheDocument()
-    userEvent.click(screen.getByText('error'))
-    expect(screen.getByText("orderBookError: There's an error")).toBeInTheDocument()
+    // userEvent.click(screen.getByText('error'))
+    // expect(screen.getByText("orderBookError: There's an error")).toBeInTheDocument()
   })
 })

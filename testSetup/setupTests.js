@@ -12,7 +12,6 @@ afterEach(() => {
   cache.clear()
   server.resetHandlers()
   jest.runAllTimers()
-  global.gc()
 })
 
 afterAll(() => {

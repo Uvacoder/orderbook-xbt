@@ -1,4 +1,7 @@
-import React, { createContext, ReactNode, useContext, useReducer, useEffect, useRef } from 'react'
+/* eslint-disable consistent-return */
+import React, { createContext, ReactNode, useContext, useReducer, useEffect, useRef, useState } from 'react'
+import useDocumentHidden from 'hooks/useDocumentHidden'
+import useOnlineStatus from 'hooks/useOnlineStatus'
 import { OrderBookState, OrderBookSnapshot } from '~/types/OrderBookTypes'
 import { orderBookReducer, initialOrderBookState } from './orderBookReducer'
 
@@ -8,11 +11,19 @@ const WSS_URL = process.env.WSS_URL || 'wss://www.cryptofacilities.com/ws/v1'
 
 export const OrderBookProvider = ({ children }: { children: ReactNode }): JSX.Element => {
   const [orderBook, dispatch] = useReducer(orderBookReducer, initialOrderBookState)
+  const documentHidden = useDocumentHidden()
+  const online = useOnlineStatus()
   const ws = useRef<WebSocket | undefined>()
 
   const { productIds, orderBookConnected } = orderBook
 
   useEffect(() => {
+    if (documentHidden) {
+      ws.current?.close()
+      dispatch({ type: 'unsubscribeFromOrderBook' })
+      return
+    }
+
     ws.current = new WebSocket(WSS_URL)
 
     ws.current.addEventListener('open', () => {
@@ -26,18 +37,27 @@ export const OrderBookProvider = ({ children }: { children: ReactNode }): JSX.El
     ws.current.addEventListener('error', (event) => {
       dispatch({ type: 'orderBookError', orderBookError: event })
       // QUESTION: should the connection be closed after an error?
+      // If so, there needs to be a way to connect to it.
       // ws.current.close()
     })
 
     return () => {
       ws.current.close()
     }
-  }, [])
+  }, [documentHidden])
+
+  useEffect(() => {
+    if (!online) {
+      dispatch({
+        type: 'orderBookError',
+        orderBookError: 'You have lost internet access. Please reconnect to see orderbook'
+      })
+    }
+  }, [online])
 
   useEffect(() => {
     if (!ws.current || !orderBookConnected) {
-      // eslint-disable-next-line @typescript-eslint/no-empty-function
-      return () => {}
+      return
     }
 
     if (ws.current.readyState === ws.current.OPEN) {
