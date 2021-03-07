@@ -4,7 +4,7 @@ export interface BidAskData {
   size: number
   price: number
   total: number
-  new: boolean
+  // new: boolean // TODO: for highlighting new/changed positions
 }
 
 export interface OrderBookData {
@@ -25,12 +25,14 @@ export interface OrderBookState {
   orderBookConnected: boolean
   orderBookError?: string | Event
   productIds: string[]
+  reconnect: number
 }
 
 export type OrderBookActions =
   | { type: 'updateOrderBook'; bids: BidAskOrderBook[]; asks: BidAskOrderBook[] }
   | { type: 'unsubscribeFromOrderBook' }
   | { type: 'connectedToOrderBook' }
-  | { type: 'orderBookError'; orderBookError: string | Event }
+  | { type: 'reconnectToOrderBook' }
+  | { type: 'orderBookError'; orderBookError: string }
 
 export type OrderBookDispatch = (action: OrderBookActions) => void

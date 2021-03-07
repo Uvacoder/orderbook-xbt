@@ -7,7 +7,7 @@ interface LoaderSVGProps {
 // By Sam Herbert (@sherb), for everyone. More @ http://goo.gl/7AJzbL
 const Loader: React.FunctionComponent<LoaderSVGProps> = ({ fillColor = '#29baa5' }) => {
   return (
-    <svg xmlns="http://www.w3.org/2000/svg" width="55" height="20" viewBox="0 0 55 80" fill={fillColor}>
+    <svg xmlns="http://www.w3.org/2000/svg" width="200" height="115" viewBox="0 0 55 80" fill={fillColor}>
       <g transform="matrix(1 0 0 -1 0 80)">
         <rect width="10" height="20" rx="3">
           <animate

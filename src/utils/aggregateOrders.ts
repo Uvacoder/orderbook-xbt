@@ -21,8 +21,7 @@ const reduceTupleIntoOrderObject = (prevOrders: BidAskData[], orders: BidAskOrde
     const newOrderData = {
       price,
       size,
-      total: 0,
-      new: true // to highlight the incoming data
+      total: 0
     }
 
     // if new, add data at the end
@@ -41,15 +40,8 @@ const aggregateOrders = (
   ordersFromSnapshot: BidAskOrderBook[],
   bids = false
 ): BidAskData[] => {
-  // all orders are no longer new
-
-  const oldOrders = prevOrders.map((order) => ({
-    ...order,
-    new: false
-  }))
-
   // merge the old and the new orders
-  const orderObjs = reduceTupleIntoOrderObject(oldOrders, ordersFromSnapshot)
+  const orderObjs = reduceTupleIntoOrderObject(prevOrders, ordersFromSnapshot)
 
   const sortedOrder = orderObjs.sort((a, b) => b.price - a.price)
 

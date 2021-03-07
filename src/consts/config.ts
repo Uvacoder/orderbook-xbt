@@ -1,4 +1,4 @@
 export default {
-  defaultTitle: 'XBT/USD | OrderBook',
+  defaultTitle: 'OrderBook',
   defaultDescription: 'Orderbook for xbt to USD'
 }

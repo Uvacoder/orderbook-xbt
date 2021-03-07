@@ -8,7 +8,8 @@ export const initialOrderBookState: OrderBookState = {
   orderBookConnected: false,
   orderBookError: '',
   // productIds: ['PI_XBTUSD']
-  productIds: ['PI_XRPUSD']
+  productIds: ['PI_XRPUSD'],
+  reconnect: 0
 }
 
 export const orderBookReducer = (state: OrderBookState, action: OrderBookActions): OrderBookState => {
@@ -16,6 +17,7 @@ export const orderBookReducer = (state: OrderBookState, action: OrderBookActions
     case 'updateOrderBook': {
       return {
         ...state,
+        orderBookConnecting: false,
         bids: aggregateOrders(state.bids, action.bids, true),
         asks: aggregateOrders(state.asks, action.asks)
       }
@@ -23,7 +25,6 @@ export const orderBookReducer = (state: OrderBookState, action: OrderBookActions
     case 'connectedToOrderBook': {
       return {
         ...state,
-        orderBookConnecting: false,
         orderBookConnected: true
       }
     }
@@ -38,6 +39,14 @@ export const orderBookReducer = (state: OrderBookState, action: OrderBookActions
       return {
         ...state,
         orderBookError: action.orderBookError
+      }
+    }
+    case 'reconnectToOrderBook': {
+      return {
+        ...state,
+        orderBookConnecting: true,
+        orderBookConnected: false,
+        reconnect: state.reconnect + 1
       }
     }
     default: {
