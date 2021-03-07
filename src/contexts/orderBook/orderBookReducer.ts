@@ -1,3 +1,4 @@
+import aggregateOrders from 'utils/aggregateOrders'
 import { OrderBookState, OrderBookActions } from '~/types/OrderBookTypes'
 
 export const initialOrderBookState: OrderBookState = {
@@ -6,17 +7,17 @@ export const initialOrderBookState: OrderBookState = {
   orderBookConnecting: true,
   orderBookConnected: false,
   orderBookError: '',
-  productIds: ['PI_XBTUSD']
+  // productIds: ['PI_XBTUSD']
+  productIds: ['PI_XRPUSD']
 }
 
 export const orderBookReducer = (state: OrderBookState, action: OrderBookActions): OrderBookState => {
   switch (action.type) {
     case 'updateOrderBook': {
-      // addOrderUpdateToBook(prevOrders, data)
       return {
         ...state,
-        bids: action.orderBook?.bids,
-        asks: action.orderBook?.asks
+        bids: aggregateOrders(state.bids, action.bids, true),
+        asks: aggregateOrders(state.asks, action.asks)
       }
     }
     case 'connectedToOrderBook': {

@@ -1,5 +1,5 @@
 /* eslint-disable consistent-return */
-import React, { createContext, ReactNode, useContext, useReducer, useEffect, useRef, useState } from 'react'
+import React, { createContext, ReactNode, useContext, useReducer, useEffect, useRef } from 'react'
 import useDocumentHidden from 'hooks/useDocumentHidden'
 import useOnlineStatus from 'hooks/useOnlineStatus'
 import { OrderBookState, OrderBookSnapshot } from '~/types/OrderBookTypes'
@@ -36,9 +36,7 @@ export const OrderBookProvider = ({ children }: { children: ReactNode }): JSX.El
 
     ws.current.addEventListener('error', (event) => {
       dispatch({ type: 'orderBookError', orderBookError: event })
-      // QUESTION: should the connection be closed after an error?
-      // If so, there needs to be a way to connect to it.
-      // ws.current.close()
+      ws.current.close()
     })
 
     return () => {
@@ -71,21 +69,12 @@ export const OrderBookProvider = ({ children }: { children: ReactNode }): JSX.El
     }
 
     const onMessage = (event: MessageEvent) => {
-      try {
-        const data: OrderBookSnapshot = JSON.parse(event.data)
-        if (!data.bids && !data.asks) {
-          return
-        }
-
-        dispatch({ type: 'updateOrderBook', orderBook: data })
-      } catch (err) {
-        // eslint-disable-next-line no-console
-        console.error('WS error: bad message', event.data, err.message)
-        dispatch({
-          type: 'orderBookError',
-          orderBookError: `There was an error with the incoming data: ${err.message}`
-        })
+      const { bids, asks }: OrderBookSnapshot = JSON.parse(event.data)
+      if (!bids && !asks) {
+        return
       }
+
+      dispatch({ type: 'updateOrderBook', bids, asks })
     }
 
     ws.current.addEventListener('message', onMessage)

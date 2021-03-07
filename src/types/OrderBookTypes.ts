@@ -1,5 +1,12 @@
 export type BidAskOrderBook = [number, number]
 
+export interface BidAskData {
+  size: number
+  price: number
+  total: number
+  new: boolean
+}
+
 export interface OrderBookData {
   bids: BidAskOrderBook[]
   asks: BidAskOrderBook[]
@@ -11,15 +18,17 @@ export interface OrderBookSnapshot extends OrderBookData {
 }
 
 // State pattern types for order book
-export interface OrderBookState extends OrderBookData {
+export interface OrderBookState {
+  bids: BidAskData[]
+  asks: BidAskData[]
   orderBookConnecting: boolean
   orderBookConnected: boolean
-  orderBookError?: string
+  orderBookError?: string | Event
   productIds: string[]
 }
 
 export type OrderBookActions =
-  | { type: 'updateOrderBook'; orderBook: OrderBookData }
+  | { type: 'updateOrderBook'; bids: BidAskOrderBook[]; asks: BidAskOrderBook[] }
   | { type: 'unsubscribeFromOrderBook' }
   | { type: 'connectedToOrderBook' }
   | { type: 'orderBookError'; orderBookError: string | Event }

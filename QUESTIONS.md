@@ -4,11 +4,12 @@
 
 - Pipeline with different files .env to store configs
 - Internationalization
-- Better a11y
+- More features found in the example like dynamic grouping of orders or a chart.
 
 ## What would you have done differently if you knew this page was going to get thousands of views per second vs per week?
 
 - 100% test coverage for both unit tests and end to end tests
+- Better a11y. The accessibility/diversity increases as the people increase
 
 ## What was the most useful feature that was added to the latest version of your chosen language? Please include a snippet of code that shows how you've used it.
 
