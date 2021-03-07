@@ -6,16 +6,15 @@ import { formatProductId } from 'utils/formatters'
 import Loader from 'svg/Loader'
 import OrderTable from './OrderTable'
 import OrderError from './OrderError'
+import ProductSelect from './ProductSelect'
 
 import styles from './orderBook.module.scss'
 
 /* TODO:
-- bar styes
-- same key problem?
-- Add a couple different product Ids
-- Grouping
+- products are aggregating and not erasing
 - unit tests
 - cypress tests
+- Grouping
 - Tooltip component for price, size, total
 */
 const OrderBook: React.FunctionComponent = () => {
@@ -29,7 +28,10 @@ const OrderBook: React.FunctionComponent = () => {
 
   return (
     <div className={styles.container}>
-      <h1>OrderBook {tradeName}</h1>
+      <div>
+        <h1>OrderBook {tradeName}</h1>
+        <ProductSelect />
+      </div>
       <div className={styles.orderBook}>
         <OrderError />
         {orderBookConnecting ? (

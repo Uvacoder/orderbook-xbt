@@ -12,7 +12,6 @@
 .tableWrapper {
   border-collapse: collapse;
   margin-bottom: 1rem;
-  table-layout: fixed;
   text-align: right;
   width: 100%;
 
@@ -33,9 +32,9 @@
 
   &::before {
     content: '';
-    height: 25px;
+    height: 24px;
     position: absolute;
-    max-width: 330px;
+    max-width: 415px;
     width: 100%;
     z-index: 0;
     background-color: var(--bar-color);

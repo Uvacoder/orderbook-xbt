@@ -10,6 +10,10 @@ interface OrderTableProps {
 }
 
 const OrderTable: React.FunctionComponent<OrderTableProps> = ({ bids, orders }) => {
+  if (orders.length === 0) {
+    return null
+  }
+
   const maxTotal = Math.max(orders[0].total, orders[orders.length - 1].total)
 
   return (

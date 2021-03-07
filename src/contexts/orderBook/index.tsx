@@ -2,7 +2,6 @@
 import React, { createContext, ReactNode, useContext, useReducer, useEffect, useRef } from 'react'
 import useOnlineStatus from 'hooks/useOnlineStatus'
 import useDocumentHidden from 'hooks/useDocumentHidden'
-import fakeOrderBook from 'consts/fakeOrderBook'
 import { OrderBookState, OrderBookSnapshot, OrderBookDispatch } from '~/types/OrderBookTypes'
 import { orderBookReducer, initialOrderBookState } from './orderBookReducer'
 
@@ -19,10 +18,6 @@ export const OrderBookProvider = ({ children }: { children: ReactNode }): JSX.El
   const firstUpdate = useRef(true)
 
   const { productIds, orderBookConnected, reconnect } = orderBook
-
-  // useEffect(() => {
-  //   dispatch({ type: 'updateOrderBook', bids: fakeOrderBook.bids, asks: fakeOrderBook.asks })
-  // }, [])
 
   useEffect(() => {
     ws.current = new WebSocket(WSS_URL)

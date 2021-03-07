@@ -27,7 +27,7 @@ const OrderRow: React.FunctionComponent<OrderRowProps> = ({ bids, order, maxTota
       </td>
       <td colSpan={2}>{size.toLocaleString()}</td>
       <td colSpan={2}>{total.toLocaleString()}</td>
-      <td />
+      <td colSpan={2} />
     </tr>
   )
 }

@@ -7,8 +7,7 @@ export const initialOrderBookState: OrderBookState = {
   orderBookConnecting: true,
   orderBookConnected: false,
   orderBookError: '',
-  // productIds: ['PI_XBTUSD']
-  productIds: ['PI_XRPUSD'],
+  productIds: ['PI_XBTUSD'],
   reconnect: 0
 }
 
@@ -47,6 +46,15 @@ export const orderBookReducer = (state: OrderBookState, action: OrderBookActions
         orderBookConnecting: true,
         orderBookConnected: false,
         reconnect: state.reconnect + 1
+      }
+    }
+    case 'changeProduct': {
+      return {
+        ...state,
+        asks: [], // refresh bids/asks everytime the productId changes
+        bids: [],
+        orderBookConnecting: true,
+        productIds: [action.productId]
       }
     }
     default: {

@@ -33,6 +33,7 @@ export type OrderBookActions =
   | { type: 'unsubscribeFromOrderBook' }
   | { type: 'connectedToOrderBook' }
   | { type: 'reconnectToOrderBook' }
+  | { type: 'changeProduct'; productId: string }
   | { type: 'orderBookError'; orderBookError: string }
 
 export type OrderBookDispatch = (action: OrderBookActions) => void
