@@ -11,7 +11,7 @@ const OrderError: React.FunctionComponent = () => {
 
   return (
     <div>
-      <p>{orderBookError}</p>
+      <p role="alert">{orderBookError}</p>
       <button type="button" onClick={() => dispatch({ type: 'reconnectToOrderBook' })}>
         Reconnect
       </button>

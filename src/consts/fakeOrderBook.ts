@@ -34,6 +34,24 @@ const bids: BidAskOrderBook[] = [
   [0.4581, 510]
 ]
 
+export const fakeAskData = [
+  { price: 0.4607, size: 101600, total: 424532 },
+  { price: 0.4601, size: 52784, total: 322932 },
+  { price: 0.4598, size: 31279, total: 270148 },
+  { price: 0.4597, size: 38631, total: 238869 },
+  { price: 0.4596, size: 0, total: 200238 },
+  { price: 0.4595, size: 2968, total: 171199 },
+  { price: 0.4594, size: 44442, total: 168231 },
+  { price: 0.4593, size: 30148, total: 123789 },
+  { price: 0.4592, size: 3082, total: 93641 },
+  { price: 0.4591, size: 12978, total: 90559 },
+  { price: 0.4589, size: 16418, total: 77581 },
+  { price: 0.4588, size: 54836, total: 61163 },
+  { price: 0.4587, size: 5000, total: 6327 },
+  { price: 0.4586, size: 1327, total: 1328 },
+  { price: 0.4585, size: 1, total: 1 }
+]
+
 const fakeOrderBook = {
   asks,
   bids,

@@ -9,7 +9,11 @@ const ProductSelect: React.FunctionComponent = () => {
   const dispatch = useOrderBookDispatch()
 
   return (
-    <select value={productIds[0]} onChange={(e) => dispatch({ type: 'changeProduct', productId: e.target.value })}>
+    <select
+      data-testid="product-id"
+      value={productIds[0]}
+      onChange={(e) => dispatch({ type: 'changeProduct', productId: e.target.value })}
+    >
       {productIdOptions.map((id) => (
         <option key={id.value} value={id.value}>
           {id.label}

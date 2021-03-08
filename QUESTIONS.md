@@ -11,7 +11,7 @@
 
 - 100% test coverage for both unit tests and end to end tests
 - More error handling. I have found that weird bugs are exposed with more people using the software.
-- Better a11y. The accessibility/diversity increases as the views increase
+- Better a11y. The accessibility/diversity increases as the views increase. I would go through the page with a screen reader and see if it makes sense. Then I would run an a11y tool like Axe to see what more I could do (color contrast is probably off)
 - Internationalization. Thousands of views per second means that many are coming from different countries with different languages.
 - Performance stress tests to see if the server can handle the load
 

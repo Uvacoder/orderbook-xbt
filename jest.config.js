@@ -17,6 +17,7 @@ module.exports = {
     '!**/cypress/**',
     '!**/svg/**',
     '!**/pages/**',
+    '!src/components/PageLayout.tsx',
     '!src/react-app-env.d.ts'
   ],
   setupFilesAfterEnv: ['<rootDir>/testSetup/setupTests.js'],
