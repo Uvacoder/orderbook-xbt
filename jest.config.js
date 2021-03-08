@@ -16,9 +16,10 @@ module.exports = {
     '!**/node_modules/**',
     '!**/cypress/**',
     '!**/svg/**',
+    '!**/pages/**',
     '!src/react-app-env.d.ts'
   ],
-  setupFilesAfterEnv: ['<rootDir>/testSetup/setupTests.js', '<rootDir>/testSetup/server.js'],
+  setupFilesAfterEnv: ['<rootDir>/testSetup/setupTests.js'],
   testPathIgnorePatterns: ['/node_modules/', '/.next/', '/cypress/'],
   transform: {
     '^.+\\.(ts|tsx)?$': 'ts-jest',
@@ -31,10 +32,10 @@ module.exports = {
   moduleDirectories: ['node_modules', 'src', '<rootDir>'],
   coverageThreshold: {
     global: {
-      branches: 0,
-      functions: 0,
-      lines: 0,
-      statements: 0
+      branches: 50,
+      functions: 50,
+      lines: 50,
+      statements: 50
     }
   }
 }

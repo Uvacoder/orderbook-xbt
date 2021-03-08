@@ -1,7 +1,7 @@
 /* eslint-disable no-param-reassign */
 import { BidAskData, BidAskOrderBook } from '~/types/OrderBookTypes'
 
-const reduceTupleIntoOrderObject = (prevOrders: BidAskData[], orders: BidAskOrderBook[]) => {
+const reduceTupleIntoOrderObject = (prevOrders: BidAskData[], orders: BidAskOrderBook[]): BidAskData[] => {
   return orders.reduce((prev, cur) => {
     const [price, size] = cur
     const orderIndex = prevOrders.findIndex((prevOrder) => prevOrder.price === price)
@@ -35,14 +35,7 @@ const reduceTupleIntoOrderObject = (prevOrders: BidAskData[], orders: BidAskOrde
   }, prevOrders)
 }
 
-const aggregateOrders = (
-  prevOrders: BidAskData[],
-  ordersFromSnapshot: BidAskOrderBook[],
-  bids = false
-): BidAskData[] => {
-  // merge the old and the new orders
-  const orderObjs = reduceTupleIntoOrderObject(prevOrders, ordersFromSnapshot)
-
+export const sortAndAddTotal = (orderObjs: BidAskData[], bids: boolean): BidAskData[] => {
   const sortedOrder = orderObjs.sort((a, b) => b.price - a.price)
 
   if (!bids) {
@@ -60,6 +53,17 @@ const aggregateOrders = (
     sortedTotal.reverse()
   }
 
+  return sortedTotal
+}
+
+const aggregateOrders = (
+  prevOrders: BidAskData[],
+  ordersFromSnapshot: BidAskOrderBook[],
+  bids = false
+): BidAskData[] => {
+  // merge the old and the new orders
+  const orderObjs = reduceTupleIntoOrderObject(prevOrders, ordersFromSnapshot)
+  const sortedTotal = sortAndAddTotal(orderObjs, bids)
   return sortedTotal
 }
 

@@ -10,7 +10,8 @@
     "debug": "NODE_OPTIONS='--inspect' next dev",
     "test": "jest --coverage --watchAll=false",
     "test:watch": "jest --watch",
-    "cypress": "cypress open --config baseUrl=http://localhost:3000/",
+    "cy:open": "cypress open --config baseUrl=http://localhost:3000/",
+    "cy:test": "start-server-and-test dev http://localhost:3000 cy:open",
     "format": "prettier --write src/**/*.{ts,tsx}",
     "lint": "eslint --fix src/**/*.{ts,tsx}",
     "type-check": "tsc"
@@ -43,8 +44,8 @@
     "identity-obj-proxy": "^3.0.0",
     "jest": "^26.6.2",
     "jest-css-modules-transform": "^4.2.0",
-    "msw": "^0.26.2",
     "prettier": "^2.1.2",
-    "react-test-renderer": "^17.0.1"
+    "react-test-renderer": "^17.0.1",
+    "start-server-and-test": "^1.12.0"
   }
 }

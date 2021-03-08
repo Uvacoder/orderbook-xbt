@@ -10,7 +10,11 @@
 
 ### `yarn test`
 
-Launches the test runner and gives the code coverage
+Launches the jest unit test runner and gives the code coverage
+
+### `yarn cy:test`
+
+Launches the cypress E2E test runner
 
 ### `yarn build`
 
