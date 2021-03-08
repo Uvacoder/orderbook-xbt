@@ -12,6 +12,7 @@ export const formatPrice = (price: number): string => {
   return new Intl.NumberFormat('en-US', {
     style: 'currency',
     currency: 'USD',
+    minimumFractionDigits: 2, // 1 satoshi is 8 decimal places
     maximumSignificantDigits: 8 // 1 satoshi is 8 decimal places
   }).format(price)
 }

@@ -36,7 +36,8 @@ const reduceTupleIntoOrderObject = (prevOrders: BidAskData[], orders: BidAskOrde
 }
 
 export const sortAndAddTotal = (orderObjs: BidAskData[], bids: boolean): BidAskData[] => {
-  const sortedOrder = orderObjs.sort((a, b) => b.price - a.price)
+  const ROWS = 10 // how many rows in the orderbook to hold. This could be dynamic
+  const sortedOrder = orderObjs.slice(0, ROWS).sort((a, b) => b.price - a.price)
 
   if (!bids) {
     sortedOrder.reverse()

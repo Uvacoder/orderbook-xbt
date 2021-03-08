@@ -23,14 +23,15 @@ const OrderBook: React.FunctionComponent = () => {
   useTitle(
     orderBookConnecting
       ? `${tradeName} | ${config.defaultTitle}`
-      : `${bids[0]?.price || ''} ${tradeName} | ${config.defaultTitle}`
+      : `${bids[0]?.price?.toLocaleString() || ''} ${tradeName} | ${config.defaultTitle}`
   )
 
   return (
     <div className={styles.container}>
       <div>
-        <h1>OrderBook {tradeName}</h1>
-        <ProductSelect />
+        <h1>
+          OrderBook <ProductSelect />
+        </h1>
       </div>
       <div className={styles.orderBook}>
         <OrderError />

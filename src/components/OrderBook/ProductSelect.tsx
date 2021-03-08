@@ -2,7 +2,7 @@ import React from 'react'
 import { useOrderBookState, useOrderBookDispatch } from 'contexts/orderBook'
 import productIdOptions from 'consts/productIdOptions'
 
-// import styles from './orderBook.module.scss' // TODO:
+import styles from './orderBook.module.scss'
 
 const ProductSelect: React.FunctionComponent = () => {
   const { productIds } = useOrderBookState()
@@ -12,6 +12,7 @@ const ProductSelect: React.FunctionComponent = () => {
     <select
       data-testid="product-id"
       value={productIds[0]}
+      className={styles.productSelect}
       onChange={(e) => dispatch({ type: 'changeProduct', productId: e.target.value })}
     >
       {productIdOptions.map((id) => (

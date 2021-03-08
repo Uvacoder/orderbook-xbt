@@ -14,7 +14,6 @@ describe('Order Book', () => {
       </OrderBookProvider>
     )
     const svg = container.querySelector('svg')
-    expect(screen.getByText('OrderBook XBT/USD')).toBeInTheDocument()
     expect(svg).toBeInTheDocument()
   })
   it('should change the product id', () => {
@@ -25,7 +24,6 @@ describe('Order Book', () => {
     )
     userEvent.selectOptions(screen.getByTestId('product-id'), 'PI_ETHUSD')
     expect(screen.getByTestId('product-id')).toHaveValue('PI_ETHUSD')
-    expect(screen.getByText('OrderBook ETH/USD')).toBeInTheDocument()
   })
 })
 

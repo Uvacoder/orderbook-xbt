@@ -2,6 +2,7 @@
 import React, { createContext, ReactNode, useContext, useReducer, useEffect, useRef } from 'react'
 import useOnlineStatus from 'hooks/useOnlineStatus'
 import useDocumentHidden from 'hooks/useDocumentHidden'
+import useFirstUpdate from 'hooks/useFirstUpdate'
 import { OrderBookState, OrderBookSnapshot, OrderBookDispatch } from '~/types/OrderBookTypes'
 import { orderBookReducer, initialOrderBookState } from './orderBookReducer'
 
@@ -15,7 +16,6 @@ export const OrderBookProvider = ({ children }: { children: ReactNode }): JSX.El
   const documentHidden = useDocumentHidden()
   const online = useOnlineStatus()
   const ws = useRef<WebSocket | undefined>()
-  const firstUpdate = useRef(true)
 
   const { productIds, orderBookConnected, reconnect } = orderBook
 
@@ -42,13 +42,14 @@ export const OrderBookProvider = ({ children }: { children: ReactNode }): JSX.El
     }
   }, [reconnect])
 
-  useEffect(() => {
-    // dont run on mount
-    if (firstUpdate.current) {
-      firstUpdate.current = false
-      return
-    }
+  useFirstUpdate(() => {
+    ws.current.addEventListener('close', () => {
+      dispatch({ type: 'reconnectToOrderBook' })
+    })
+    ws.current?.close()
+  }, [productIds])
 
+  useFirstUpdate(() => {
     if (documentHidden) {
       ws.current.close(1000)
     } else {

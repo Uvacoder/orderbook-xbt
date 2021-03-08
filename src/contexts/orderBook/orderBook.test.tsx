@@ -67,8 +67,8 @@ describe('OrderBookProvider Component', () => {
     expect(screen.getByText('bids: 0')).toBeInTheDocument()
     expect(screen.getByText('orderBookConnecting: true')).toBeInTheDocument()
     userEvent.click(screen.getByText('updateOrderBook'))
-    expect(screen.getByText('asks: 14')).toBeInTheDocument()
-    expect(screen.getByText('bids: 11')).toBeInTheDocument()
+    expect(screen.getByText('asks: 10')).toBeInTheDocument()
+    expect(screen.getByText('bids: 10')).toBeInTheDocument()
     expect(screen.getByText('orderBookConnecting: false')).toBeInTheDocument()
 
     expect(screen.getByText('orderBookConnected: false')).toBeInTheDocument()

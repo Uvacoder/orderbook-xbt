@@ -4,7 +4,7 @@
 
 - Pipeline with different files .env to store configs
 - More features found in the example like:
-  - dynamic grouping of orders
+  - dynamic grouping/spread of orders
   - highlight changed orders
 
 ## What would you have done differently if you knew this page was going to get thousands of views per second vs per week?

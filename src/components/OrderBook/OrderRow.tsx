@@ -22,12 +22,9 @@ const OrderRow: React.FunctionComponent<OrderRowProps> = ({ bids, order, maxTota
         } as CSSProperties
       }
     >
-      <td colSpan={2} className={bids ? styles.bidPrice : styles.askPrice}>
-        {formatPrice(price)}
-      </td>
+      <td className={bids ? styles.bidPrice : styles.askPrice}>{formatPrice(price)}</td>
       <td colSpan={2}>{size.toLocaleString()}</td>
       <td colSpan={2}>{total.toLocaleString()}</td>
-      <td colSpan={2} />
     </tr>
   )
 }

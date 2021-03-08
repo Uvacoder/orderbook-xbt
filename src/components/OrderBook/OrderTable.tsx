@@ -21,9 +21,18 @@ const OrderTable: React.FunctionComponent<OrderTableProps> = ({ bids, orders }) 
       {!bids && (
         <thead>
           <tr>
-            <th colSpan={2}>PRICE</th>
-            <th colSpan={2}>SIZE</th>
-            <th colSpan={2}>TOTAL</th>
+            <th
+              colSpan={2}
+              title="Bids - the bids price represents the maximum price that a user is willing to buy it at. Asks - the ask price represents the minimum price that a user is willing to sell it at."
+            >
+              PRICE
+            </th>
+            <th colSpan={2} title="Number of contracts available at this price level">
+              SIZE
+            </th>
+            <th colSpan={2} title="Cumulative number of contracts at this price level">
+              TOTAL
+            </th>
           </tr>
         </thead>
       )}
