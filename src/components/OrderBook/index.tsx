@@ -10,13 +10,6 @@ import ProductSelect from './ProductSelect'
 
 import styles from './orderBook.module.scss'
 
-/* TODO:
-- products are aggregating and not erasing
-- unit tests
-- cypress tests
-- Grouping
-- Tooltip component for price, size, total
-*/
 const OrderBook: React.FunctionComponent = () => {
   const { orderBookConnecting, productIds, bids, asks } = useOrderBookState()
   const tradeName = formatProductId(productIds)

@@ -51,7 +51,7 @@ export const orderBookReducer = (state: OrderBookState, action: OrderBookActions
     case 'changeProduct': {
       return {
         ...state,
-        asks: [], // TODO: close sockets as well... refresh bids/asks everytime the productId changes
+        asks: [],
         bids: [],
         orderBookConnecting: true,
         productIds: [action.productId]
