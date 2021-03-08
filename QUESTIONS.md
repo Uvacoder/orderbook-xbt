@@ -3,9 +3,9 @@
 ## What would you add to your solution if you had more time?
 
 - More features that are found in the example like:
-  - dynamic grouping or spread of orders
-  - highlight changed orders
-  - adding/subtracting rows
+  - dynamic grouping or spread of orders. I would accomplish this by creating a number incrementer that increases or decreases the spread. That would be saved in the orderBook reducer and would update the "aggregateOrders" function. After sorting the orders in that function, I would create a finite amount of "buckets" that would hold all the orders of that group for each spread.
+  - highlight changed orders. This could be accomplished by creating a "highlightRow" key attached to the order object that I create. The "highlightRow" would be calculated based on if the grouped "bucket" has changed positions. Since there's a limited number of rows in the order book, there'll be a limited number of bucket groups. When the price/position of the bucket changes, a flash of highlight animation overlays the row.
+  - adding/subtracting rows. To accomplish this, I would just make a number incrementer that saves to the orderBook Reducer. It replaces the "ROWS" variable where I limit the amount of orders in the orderBook in the "aggregateOrders" function.
 - Change the way I implemented the websockets. I just found [this npm package](https://github.com/robtaussig/react-use-websocket#readme) that has features like `retryOnError` and `reconnectAttempts` that I did not yet implement.
 - A pipeline with different .env files to store environemnt configs
 
